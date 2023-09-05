@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2792031974e84c1429c65104b036f4e5, type: 3}
   m_Name: Warrior_NavMeshMove
   m_EditorClassIdentifier: 
-  _moveOffset: 10
+  _isEnemy: 0
+  _moveOffset: 1
