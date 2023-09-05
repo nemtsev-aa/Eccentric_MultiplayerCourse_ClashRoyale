@@ -1930,6 +1930,7 @@ GameObject:
   - component: {fileID: 2129838694}
   - component: {fileID: 2129838696}
   - component: {fileID: 2129838695}
+  - component: {fileID: 2129838697}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -1965,6 +1966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14bc1a70361fb94f942dc0ea3b1bd09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsEnemy>k__BackingField: 0
+  Parameters: {fileID: 2129838697}
   _defaultStateSO: {fileID: 11400000, guid: bab5d7f01fc3a934a87b833f7b5d2f31, type: 2}
   _chaseStateSO: {fileID: 11400000, guid: bab5d7f01fc3a934a87b833f7b5d2f31, type: 2}
   _attackStateSO: {fileID: 11400000, guid: bab5d7f01fc3a934a87b833f7b5d2f31, type: 2}
@@ -1990,3 +1993,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2129838697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129838693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039262a5cebd2f24b8a1e2853652b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <StartAttackDistance>k__BackingField: 1
+  <StopAttackDistance>k__BackingField: 1.5
+  <Speed>k__BackingField: 4
