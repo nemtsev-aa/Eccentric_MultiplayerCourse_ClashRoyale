@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 [CreateAssetMenu(fileName = "_NavMeshMove", menuName = "UnitState/NavMeshMove")]
@@ -17,7 +18,6 @@ public class NavMeshMove : UnitState {
         _agent.radius = _unit.Parameters.ModelRadius;
         _agent.stoppingDistance = _unit.Parameters.StartAttackDistance;
         _agent.speed = _unit.Parameters.Speed;
-
     }
 
     public override void Init() {
@@ -28,18 +28,31 @@ public class NavMeshMove : UnitState {
     }
 
     public override void Run() {
-        TryAttackTower();
+        if (TryAttackTower()) return;
+        if (TryAttackUnit()) return;
     }
 
     public override void Finish() {
         _agent.isStopped = true;
     }
 
-    private void TryAttackTower() {
+    private bool TryAttackTower() {
         float distanceToTarget = _nearestTower.GetDistance(_unit.transform.position); 
         if (distanceToTarget <= _unit.Parameters.StartAttackDistance) {
-            Debug.Log("Добежал!");
-            _unit.SetState(UnitStateType.Attack);
+            _unit.SetState(UnitStateType.Chase);
+            return true;
         }
+        return false;
+    }
+
+    private bool TryAttackUnit() {
+        bool hasEnemy = MapInfo.Instance.TryGetNearestUnit(_unit.transform.position, out Unit enemy, _targetIsEnemy, out float distance);
+        if (hasEnemy == false) return false;
+
+        if (_unit.Parameters.StartChaseDistance >= distance + enemy.Parameters.ModelRadius) {
+            _unit.SetState(UnitStateType.Attack);
+            return true;
+        }
+        return false;
     }
 }
