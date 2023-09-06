@@ -25,6 +25,8 @@ public class Unit : MonoBehaviour, IHealth {
 
         _currentState = _defaultState;
         _currentState.Init();
+
+        Health.Init(this);
     }
 
     private void Update() {

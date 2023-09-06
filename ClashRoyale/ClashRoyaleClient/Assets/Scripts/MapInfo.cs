@@ -29,10 +29,12 @@ public class MapInfo : MonoBehaviour {
         unit = GetNearest(currentPosition, units, out distance);
         return unit;
     }
+
     public Tower GetNearestTower(in Vector3 currentPosition, bool enemy) {
         List<Tower> towers = enemy ? _enemyTowers : _playerTowers;
         return GetNearest(currentPosition, towers, out float distance);
     }
+
     private T GetNearest<T>(in Vector3 currentPosition, List<T> objects, out float distance) where T: MonoBehaviour{
         distance = float.MaxValue;
         if (objects.Count <= 0) return null;
@@ -48,7 +50,16 @@ public class MapInfo : MonoBehaviour {
             distance = tempDistance;
         }
 
-
         return nearest;
+    }
+
+    public void RemoveObject(IHealth obj, bool enemy) {       
+        if (obj is Tower) {
+            List<Tower> towers = enemy ? _enemyTowers : _playerTowers;
+            towers.Remove(obj as Tower);
+        } else if (obj is Unit) {
+            List<Unit> units = enemy ? _enemyUnits : _playerUnits;
+            units.Remove(obj as Unit);
+        } 
     }
 }
