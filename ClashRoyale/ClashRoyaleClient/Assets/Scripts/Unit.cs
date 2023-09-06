@@ -50,4 +50,13 @@ public class Unit : MonoBehaviour {
         }
         _currentState.Init();
     }
+
+#if UNITY_EDITOR
+    [Space(10)]
+    [SerializeField] private bool _debug = false; 
+    private void OnDrawGizmos() {
+        if (!_debug) return;
+        if (_chaseStateSO != null) _chaseStateSO.DebugDrawDistance(this);
+    }
+#endif
 }
