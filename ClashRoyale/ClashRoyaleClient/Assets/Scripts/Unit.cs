@@ -1,6 +1,7 @@
 using UnityEngine;
-[RequireComponent(typeof(UnitParameters))]
-public class Unit : MonoBehaviour {
+[RequireComponent(typeof(UnitParameters), typeof(Health))]
+public class Unit : MonoBehaviour, IHealth {
+    [field: SerializeField] public Health Health {get; private set;}
     [field: SerializeField] public bool IsEnemy { get; private set; } = false;
     [field: SerializeField] public UnitParameters Parameters;
 
