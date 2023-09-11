@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8793394963010555878
 Transform:
@@ -108,12 +108,13 @@ GameObject:
   - component: {fileID: 8793394963293281334}
   - component: {fileID: 8793394963293281335}
   - component: {fileID: 8793394963293281320}
+  - component: {fileID: 1004151760631538259}
   m_Layer: 0
   m_Name: KingTower_1
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8793394963293281334
 Transform:
@@ -147,6 +148,7 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 8793394963293281320}
   <Radius>k__BackingField: 2
   <IsEnemy>k__BackingField: 0
+  _destroyParticle: {fileID: 0}
 --- !u!114 &8793394963293281320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,10 +161,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ebbd52e1570924f9873cb723154b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthUI: {fileID: 6708773793658551262}
-  _destroyParticle: {fileID: 1842031063863612882, guid: 91c5a2796e1dd6c45bbe0891b97ba7c1,
-    type: 3}
   <Max>k__BackingField: 10
+  _healthUI: {fileID: 6708773793658551262}
+--- !u!208 &1004151760631538259
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793394963293281333}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 1.5, z: 1.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6176123023688811904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,6 +200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765891622109967451, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4547509796953837319, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
@@ -290,6 +311,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5416244213072998310, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146232824342057558, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6945376291836772037, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -359,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.002124995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905828008657668262, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5493bfb5214c9b342b9cbb76d465142e, type: 3}

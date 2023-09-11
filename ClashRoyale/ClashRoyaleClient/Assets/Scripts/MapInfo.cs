@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,13 @@ public class MapInfo : MonoBehaviour {
     [SerializeField] private List<Unit> _enemyUnits = new List<Unit>();
     [SerializeField] private List<Unit> _playerUnits = new List<Unit>();
 
+    private void Start() {
+        SubscribeDestroy(_enemyTowers);
+        SubscribeDestroy(_playerTowers);
+        SubscribeDestroy(_enemyUnits);
+        SubscribeDestroy(_playerUnits);
+    }
+
     public  bool TryGetNearestUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
         List<Unit> units = enemy ? _enemyUnits : _playerUnits;
         unit = GetNearest(currentPosition, units, out distance);
@@ -33,6 +41,19 @@ public class MapInfo : MonoBehaviour {
     public Tower GetNearestTower(in Vector3 currentPosition, bool enemy) {
         List<Tower> towers = enemy ? _enemyTowers : _playerTowers;
         return GetNearest(currentPosition, towers, out float distance);
+    }
+
+    private void SubscribeDestroy<T>(List<T> objects) where T : IDestroyed {
+        for (int i = 0; i < objects.Count; i++) {
+            T obj = objects[i];
+
+            void RemoveAndUnsubscrabe() {
+                RemoveObjectFromList(objects, obj);
+                obj.Destroyed -= RemoveAndUnsubscrabe;
+            }
+
+            obj.Destroyed += RemoveAndUnsubscrabe; 
+        }
     }
 
     private T GetNearest<T>(in Vector3 currentPosition, List<T> objects, out float distance) where T: MonoBehaviour{
@@ -61,5 +82,20 @@ public class MapInfo : MonoBehaviour {
             List<Unit> units = enemy ? _enemyUnits : _playerUnits;
             units.Remove(obj as Unit);
         } 
+    }
+
+    private void AddObjectToList<T>(List<T> objects, T obj) where T : IDestroyed {
+        objects.Add(obj);
+       
+        void RemoveAndUnsubscrabe() {
+            RemoveObjectFromList(objects, obj);
+            obj.Destroyed -= RemoveAndUnsubscrabe;
+        }
+
+        obj.Destroyed += RemoveAndUnsubscrabe;
+    }
+
+    public void RemoveObjectFromList<T>(List<T> list, T obj) {
+        if (list.Contains(obj)) list.Remove(obj);
     }
 }

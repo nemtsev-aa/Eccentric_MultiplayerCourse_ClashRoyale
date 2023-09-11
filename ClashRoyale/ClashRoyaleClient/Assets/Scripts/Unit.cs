@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 [RequireComponent(typeof(UnitParameters), typeof(Health))]
-public class Unit : MonoBehaviour, IHealth {
+public class Unit : MonoBehaviour, IHealth, IDestroyed {
     [field: SerializeField] public Health Health {get; private set;}
     [field: SerializeField] public bool IsEnemy { get; private set; } = false;
     [field: SerializeField] public UnitParameters Parameters;
@@ -9,6 +10,10 @@ public class Unit : MonoBehaviour, IHealth {
     [SerializeField] private UnitState _chaseStateSO;
     [SerializeField] private UnitState _attackStateSO;
 
+    [SerializeField] private ParticleSystem _destroyParticle;
+
+    public event Action Destroyed;
+
     private UnitState _defaultState;
     private UnitState _chaseState;
     private UnitState _attackState;
@@ -16,17 +21,22 @@ public class Unit : MonoBehaviour, IHealth {
     private UnitState _currentState;
 
     private void Start() {
+        CreateState();
+
+        _currentState = _defaultState;
+        _currentState.Init();
+
+        Health.Init(this);
+        Health.UpdateHealth += CheckDestroy;
+    }
+    
+    private void CreateState() {
         _defaultState = Instantiate(_defaultStateSO);
         _defaultState.Construct(this);
         _chaseState = Instantiate(_chaseStateSO);
         _chaseState.Construct(this);
         _attackState = Instantiate(_attackStateSO);
         _attackState.Construct(this);
-
-        _currentState = _defaultState;
-        _currentState.Init();
-
-        Health.Init(this);
     }
 
     private void Update() {
@@ -54,9 +64,20 @@ public class Unit : MonoBehaviour, IHealth {
         _currentState.Init();
     }
 
+    private void CheckDestroy(float currentHP, float maxHP) {
+        if (currentHP > 0) return;
+        Health.UpdateHealth -= CheckDestroy;
+
+        Destroy(gameObject);
+        Instantiate(_destroyParticle, transform.position, Quaternion.identity);
+
+        Destroyed?.Invoke();
+    }
+
 #if UNITY_EDITOR
     [Space(10)]
-    [SerializeField] private bool _debug = false; 
+    [SerializeField] private bool _debug = false;
+
     private void OnDrawGizmos() {
         if (!_debug) return;
         if (_chaseStateSO != null) _chaseStateSO.DebugDrawDistance(this);
