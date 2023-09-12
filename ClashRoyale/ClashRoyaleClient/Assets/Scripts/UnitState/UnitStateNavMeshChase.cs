@@ -1,36 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
-[CreateAssetMenu(fileName = "_NavMeshChase", menuName = "UnitState/NavMeshChase")]
-public class NavMeshChase : UnitState {
-    private NavMeshAgent _agent;
-    private bool _targetIsEnemy;
-    private Unit _targetUnit;
-    private float _startAttackDistance = 0f;
+public abstract class UnitStateNavMeshChase : UnitState {
+    private UnityEngine.AI.NavMeshAgent _agent;
+    protected bool _targetIsEnemy;
+    protected Unit _targetUnit;
+    protected float _startAttackDistance = 0f;
 
     public override void Construct(Unit unit) {
         base.Construct(unit);
         _targetIsEnemy = _unit.IsEnemy == false;
 
-        _agent = _unit.GetComponent<NavMeshAgent>();
-        if (_agent == null) Debug.LogError($"На персонаже {_unit.name} нет компанента NavMeshAgent");
+        _agent = _unit.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (_agent == null) Debug.LogError($"РќР° РїРµСЂСЃРѕРЅР°Р¶Рµ {_unit.name} РЅРµС‚ РєРѕРјРїР°РЅРµРЅС‚Р° NavMeshAgent");
     }
 
     public override void Init() {
-        if (MapInfo.Instance.TryGetNearestUnit(_unit.transform.position,  _targetIsEnemy, out _targetUnit, out float distance)) {
-            _startAttackDistance = _unit.Parameters.StartAttackDistance + _targetUnit.Parameters.ModelRadius;
-        }
-    }
-
-    public override void Run() {
-         if (_targetUnit == null) {
+        FindTargetUnit(out _targetUnit);
+        if (_targetUnit == null) {
             _unit.SetState(UnitStateType.Default);
             return;
         }
+         _startAttackDistance = _unit.Parameters.StartAttackDistance + _targetUnit.Parameters.ModelRadius;
+    }
 
+    public override void Run() {
         float distanceToTarget = Vector3.Distance(_unit.transform.position, _targetUnit.transform.position);
         if (distanceToTarget > _unit.Parameters.StopChaseDistance) _unit.SetState(UnitStateType.Default);
         else if (distanceToTarget <= _startAttackDistance) _unit.SetState(UnitStateType.Attack);
@@ -49,4 +43,6 @@ public class NavMeshChase : UnitState {
         Handles.DrawWireDisc(unit.transform.position, Vector3.up, unit.Parameters.StopChaseDistance);
     }
 #endif
+
+    protected abstract void FindTargetUnit(out Unit targetUnit);
 }

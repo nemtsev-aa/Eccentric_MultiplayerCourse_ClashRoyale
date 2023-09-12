@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1775482517225962123}
   - component: {fileID: 1775482517225962120}
   m_Layer: 0
-  m_Name: Warrior_1
+  m_Name: Archer_1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -171,9 +171,9 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 1775482517225962120}
   <IsEnemy>k__BackingField: 0
   Parameters: {fileID: 1775482517225962123}
-  _defaultStateSO: {fileID: 11400000, guid: 8b07f4960dc0690478e26b6ea2497ed4, type: 2}
-  _chaseStateSO: {fileID: 11400000, guid: 2e365dbbcd03d34499390f16a2574f6f, type: 2}
-  _attackStateSO: {fileID: 11400000, guid: a7f937e699e1c374e8d043920c15fb79, type: 2}
+  _defaultStateSO: {fileID: 11400000, guid: bab5d7f01fc3a934a87b833f7b5d2f31, type: 2}
+  _chaseStateSO: {fileID: 11400000, guid: 91f23bd6c86b9fe498be414461b8c4f6, type: 2}
+  _attackStateSO: {fileID: 11400000, guid: b14e225c60cfc0448998f4b29e59aefc, type: 2}
   _destroyParticle: {fileID: 1842031063863612882, guid: 91c5a2796e1dd6c45bbe0891b97ba7c1,
     type: 3}
   _debug: 0
