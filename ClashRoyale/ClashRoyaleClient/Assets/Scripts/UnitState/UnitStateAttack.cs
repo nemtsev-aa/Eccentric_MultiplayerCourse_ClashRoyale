@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class UnitStateAttack : UnitState {
     [SerializeField] private float _damage = 1.5f;
-    [SerializeField] private float _delay = 1f;
+    private float _delay;
     private float _time;
 
     private float _stopAttackDistance = 0f;
@@ -13,6 +13,7 @@ public abstract class UnitStateAttack : UnitState {
     public override void Construct(Unit unit) {
         base.Construct(unit);
         _targetIsEnemy = _unit.IsEnemy == false;
+        _delay = _unit.Parameters.DamageDelay;
         _mapInfo = MapInfo.Instance;
     }
 
@@ -40,8 +41,7 @@ public abstract class UnitStateAttack : UnitState {
         float distanceToTarget = Vector3.Distance(_target.transform.position, _unit.transform.position);
         if (distanceToTarget > _stopAttackDistance) {
             _unit.SetState(UnitStateType.Chase);
-        }
-        else {
+        } else {
             _target.ApplyDamage(_damage);
         }
 

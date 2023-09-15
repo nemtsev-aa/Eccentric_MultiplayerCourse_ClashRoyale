@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8901c2a13dc026242a8dd9b062537a6a, type: 3}
   m_Name: Warrior_UsualMeleeAttack
   m_EditorClassIdentifier: 
-  _damage: 1.5
-  _delay: 1
+  _damage: 2

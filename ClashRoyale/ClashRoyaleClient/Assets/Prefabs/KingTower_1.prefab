@@ -97,7 +97,8 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 8793394963293281320}
   <Radius>k__BackingField: 2
   <IsEnemy>k__BackingField: 0
-  _destroyParticle: {fileID: 0}
+  _destroyParticle: {fileID: 1842031063863612882, guid: 91c5a2796e1dd6c45bbe0891b97ba7c1,
+    type: 3}
 --- !u!114 &8793394963293281320
 MonoBehaviour:
   m_ObjectHideFlags: 0

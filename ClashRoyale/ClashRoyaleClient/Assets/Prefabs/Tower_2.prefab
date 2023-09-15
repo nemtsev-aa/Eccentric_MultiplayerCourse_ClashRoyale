@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField: {fileID: 3170201908647141687}
   <Radius>k__BackingField: 2
-  <IsEnemy>k__BackingField: 0
-  _destroyParticle: {fileID: 1842031063863612882, guid: 91c5a2796e1dd6c45bbe0891b97ba7c1,
+  <IsEnemy>k__BackingField: 1
+  _destroyParticle: {fileID: 1842031063863612882, guid: c4cf7c0a16785504993f03af5a7257b4,
     type: 3}
 --- !u!114 &3170201908647141687
 MonoBehaviour:
