@@ -77,10 +77,14 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
         if (currentHP > 0) return;
         Health.UpdateHealth -= CheckDestroy;
 
-        Destroy(gameObject);
-        Instantiate(_destroyParticle, transform.position, Quaternion.identity);
-
         Destroyed?.Invoke();
+    }
+
+    public void DestroyUnit() {
+        if (Health.Current == 0) {
+            Destroy(gameObject);
+            Instantiate(_destroyParticle, transform.position, Quaternion.identity);
+        }
     }
 
     public UsualRangeAttack GetUsualRangeAttack() {

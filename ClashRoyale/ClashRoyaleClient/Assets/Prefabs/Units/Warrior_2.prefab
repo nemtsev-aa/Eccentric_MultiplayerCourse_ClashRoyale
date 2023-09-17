@@ -81,6 +81,7 @@ MonoBehaviour:
   _attackStateSO: {fileID: 11400000, guid: a7f937e699e1c374e8d043920c15fb79, type: 2}
   _destroyParticle: {fileID: 1842031063863612882, guid: c4cf7c0a16785504993f03af5a7257b4,
     type: 3}
+  _arrowCreator: {fileID: 0}
   _debug: 0
 --- !u!114 &3432887040257325488
 MonoBehaviour:
@@ -1239,6 +1240,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3432887040257325502}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DestroyUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3432887040257325502}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Unit, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DestroyUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Unit, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935701823320404707, guid: 75925c365bd895145beefbc806717633,
+        type: 3}
+      propertyPath: _events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75925c365bd895145beefbc806717633, type: 3}
