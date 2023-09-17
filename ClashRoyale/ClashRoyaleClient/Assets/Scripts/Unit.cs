@@ -6,16 +6,18 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
     [field: SerializeField] public Health Health {get; private set;}
     [field: SerializeField] public bool IsEnemy { get; private set; } = false;
     [field: SerializeField] public UnitParameters Parameters;
-    [SerializeField] private ArrowCreator _arrowCreator;
+    
+    public event Action Destroyed;
+    public Action<IHealth> OnTargetChanged;
+    
     [SerializeField] private UnitAnimation _unitAnimation;
     [SerializeField] private UnitState _defaultStateSO;
     [SerializeField] private UnitState _chaseStateSO;
     [SerializeField] private UnitState _attackStateSO;
-
     [SerializeField] private ParticleSystem _destroyParticle;
 
-    public event Action Destroyed;
-    public Action<IHealth> OnTargetChanged;
+    [Space(10)]
+    [SerializeField] private ArrowCreator _arrowCreator;
 
     private UnitState _defaultState;
     private UnitState _chaseState;

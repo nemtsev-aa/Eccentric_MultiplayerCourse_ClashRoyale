@@ -28,21 +28,20 @@ public abstract class UnitStateAttack : UnitState {
     }
 
     public override void Run() {
-        _time += Time.deltaTime;
-        if (_time < _delay) return;
-        _time -= _delay;
-
         if (_target == false) {
             _unit.SetState(UnitStateType.Default);
             return;
         }
 
+        _time += Time.deltaTime;
+        if (_time < _delay) return;
+        _time -= _delay;
+
         float distanceToTarget = Vector3.Distance(_target.transform.position, _unit.transform.position);
-        if (distanceToTarget > _stopAttackDistance) {
-            _unit.SetState(UnitStateType.Chase);
-        } else {
-            Attack();
-        }
+        if (distanceToTarget > _stopAttackDistance) _unit.SetState(UnitStateType.Chase);
+
+        _unit.transform.LookAt(_target.transform);
+        Attack();
     }
 
     protected virtual void Attack() {

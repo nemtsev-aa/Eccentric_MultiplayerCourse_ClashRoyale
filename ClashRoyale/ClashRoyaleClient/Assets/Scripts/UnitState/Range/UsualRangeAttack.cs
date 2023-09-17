@@ -28,6 +28,7 @@ public class UsualRangeAttack : UnitStateAttack {
         stopAttackDistance = 0f;
         return false;
     }
+
     protected override void Attack() {
         Vector3 unitPosition = _unit.transform.position;
         Vector3 targetPosition = _target.transform.position;
