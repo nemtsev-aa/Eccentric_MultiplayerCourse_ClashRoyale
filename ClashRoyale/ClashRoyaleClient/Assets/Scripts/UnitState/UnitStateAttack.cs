@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public abstract class UnitStateAttack : UnitState {
-    [SerializeField] private float _damage = 1.5f;
+    [field: SerializeField] protected float Damage { get; private set; } = 1.5f;
     private float _delay;
     private float _time;
 
@@ -28,7 +28,6 @@ public abstract class UnitStateAttack : UnitState {
     }
 
     public override void Run() {
-
         _time += Time.deltaTime;
         if (_time < _delay) return;
         _time -= _delay;
@@ -42,9 +41,12 @@ public abstract class UnitStateAttack : UnitState {
         if (distanceToTarget > _stopAttackDistance) {
             _unit.SetState(UnitStateType.Chase);
         } else {
-            _target.ApplyDamage(_damage);
+            Attack();
         }
+    }
 
+    protected virtual void Attack() {
+        _target.ApplyDamage(Damage);
     }
 
     public override void Finish() {

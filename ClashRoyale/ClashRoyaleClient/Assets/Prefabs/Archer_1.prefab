@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8981672664985527940}
+  - {fileID: 8471238154545407175}
   m_Father: {fileID: 1775482517225962116}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,6 +122,7 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 1775482517225962120}
   <IsEnemy>k__BackingField: 0
   Parameters: {fileID: 1775482517225962123}
+  _arrowCreator: {fileID: 8894555289587784572}
   _unitAnimation: {fileID: 4838409466505741389}
   _defaultStateSO: {fileID: 11400000, guid: bab5d7f01fc3a934a87b833f7b5d2f31, type: 2}
   _chaseStateSO: {fileID: 11400000, guid: 91f23bd6c86b9fe498be414461b8c4f6, type: 2}
@@ -143,11 +145,11 @@ MonoBehaviour:
   <IsFly>k__BackingField: 0
   <Speed>k__BackingField: 4
   <ModelRadius>k__BackingField: 0.5
-  <StartChaseDistance>k__BackingField: 6
-  <StopChaseDistance>k__BackingField: 8
-  <DamageDelay>k__BackingField: 0.5
-  _startAttackDistance: 3
-  _stopAttackDistance: 4
+  <StartChaseDistance>k__BackingField: 10
+  <StopChaseDistance>k__BackingField: 12
+  <DamageDelay>k__BackingField: 2
+  _startAttackDistance: 5.2
+  _stopAttackDistance: 6.5
 --- !u!114 &1775482517225962120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +177,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8981672664994808140}
+--- !u!1 &7669578523959861483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8471238154545407175}
+  - component: {fileID: 8894555289587784572}
+  m_Layer: 0
+  m_Name: ArrowCreator
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8471238154545407175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669578523959861483}
+  m_LocalRotation: {x: -0.069995835, y: -0.13353612, z: -0.009455488, w: 0.9885238}
+  m_LocalPosition: {x: 0.151, y: 0.958, z: 0.388}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775482516464349106}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -8.101, y: -15.387, z: 0}
+--- !u!114 &8894555289587784572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669578523959861483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb21520964ee5234b9dd0cc5e48c0068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arrow: {fileID: 5848371868941394886, guid: 94bada606742f30448ea17e682ab0961, type: 3}
+  _unit: {fileID: 0}
 --- !u!1001 &6205914229754795450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,6 +371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TT_Archer_1
       objectReference: {fileID: 0}
+    - target: {fileID: 179124, guid: e6fcc747072a1dc40b6dfc16c9988b24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 494462, guid: e6fcc747072a1dc40b6dfc16c9988b24, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -371,20 +423,40 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ea2e4bdcade69a146a5bdbd0283987c4, type: 2}
+    - target: {fileID: 771223005652507547, guid: e6fcc747072a1dc40b6dfc16c9988b24,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 771223005652507547, guid: e6fcc747072a1dc40b6dfc16c9988b24,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryTakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 771223005652507547, guid: e6fcc747072a1dc40b6dfc16c9988b24,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerSmallArm, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 771223005652507547, guid: e6fcc747072a1dc40b6dfc16c9988b24,
+        type: 3}
+      propertyPath: _event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3478431685719019078, guid: e6fcc747072a1dc40b6dfc16c9988b24,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -15.34474
+      value: 9.522292
       objectReference: {fileID: 0}
     - target: {fileID: 3478431685719019078, guid: e6fcc747072a1dc40b6dfc16c9988b24,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 9.968525
+      value: -6.414947
       objectReference: {fileID: 0}
     - target: {fileID: 3478431685719019078, guid: e6fcc747072a1dc40b6dfc16c9988b24,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 153.7195
+      value: 158.29364
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6fcc747072a1dc40b6dfc16c9988b24, type: 3}

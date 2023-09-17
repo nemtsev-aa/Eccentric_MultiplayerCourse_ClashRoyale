@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "_UsualMeleeAttack", menuName = "UnitState/UsualMeleeAttack")]
 public class UsualMeleeAttack : UnitStateAttack {
+    public Action<IHealth, float> OnTargetChanged;
+
     protected override bool TryFindTarget(out float stopAttackDistance) {
         Vector3 unitPosition = _unit.transform.position;
 
@@ -10,6 +13,7 @@ public class UsualMeleeAttack : UnitStateAttack {
         if (hasEnemy && distance - enemy.Parameters.ModelRadius <= _unit.Parameters.StartAttackDistance) {
             _target = enemy.Health;
             stopAttackDistance = _unit.Parameters.StopAttackDistance + enemy.Parameters.ModelRadius;
+            _unit.OnTargetChanged?.Invoke(enemy);
             return true;
         }
 
@@ -17,6 +21,7 @@ public class UsualMeleeAttack : UnitStateAttack {
         if (targetTower.GetDistance(unitPosition) <= _unit.Parameters.StartAttackDistance) {
             _target = targetTower.Health;
             stopAttackDistance = _unit.Parameters.StopAttackDistance + targetTower.Radius;
+            _unit.OnTargetChanged?.Invoke(targetTower);
             return true;
         }
 

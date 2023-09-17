@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+
 [RequireComponent(typeof(UnitParameters), typeof(Health), typeof(UnitParameters))]
 public class Unit : MonoBehaviour, IHealth, IDestroyed {
     [field: SerializeField] public Health Health {get; private set;}
     [field: SerializeField] public bool IsEnemy { get; private set; } = false;
     [field: SerializeField] public UnitParameters Parameters;
+    [SerializeField] private ArrowCreator _arrowCreator;
     [SerializeField] private UnitAnimation _unitAnimation;
     [SerializeField] private UnitState _defaultStateSO;
     [SerializeField] private UnitState _chaseStateSO;
@@ -13,11 +15,11 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
     [SerializeField] private ParticleSystem _destroyParticle;
 
     public event Action Destroyed;
+    public Action<IHealth> OnTargetChanged;
 
     private UnitState _defaultState;
     private UnitState _chaseState;
     private UnitState _attackState;
-
     private UnitState _currentState;
 
     private void Start() {
@@ -30,6 +32,8 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
         Health.UpdateHealth += CheckDestroy;
 
         _unitAnimation.Init(this);
+
+        if (_arrowCreator != null) _arrowCreator.Init(this);
     }
     
     private void CreateState() {
@@ -75,6 +79,10 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
         Instantiate(_destroyParticle, transform.position, Quaternion.identity);
 
         Destroyed?.Invoke();
+    }
+
+    public UsualRangeAttack GetUsualRangeAttack() {
+        return (UsualRangeAttack)_attackState;
     }
 
 #if UNITY_EDITOR

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3170201908647141684}
   - component: {fileID: 3170201908647141687}
   - component: {fileID: 8954528896094149896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower_2
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3170201908991221555}
   - component: {fileID: 3170201908991221554}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765891622109967451, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4547509796953837319, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
@@ -255,6 +260,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416244213072998310, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146232824342057558, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6945376291836772037, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
@@ -381,6 +396,11 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8905828008657668262, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5493bfb5214c9b342b9cbb76d465142e, type: 3}
 --- !u!114 &243364480252035662 stripped
@@ -482,6 +502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower_Secondary
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 575d51cf270152e44a700ae8de1f4bb7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 575d51cf270152e44a700ae8de1f4bb7, type: 3}

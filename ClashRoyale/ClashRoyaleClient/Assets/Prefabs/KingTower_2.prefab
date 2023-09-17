@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5104831070560423753}
   - component: {fileID: 5104831070560423752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5104831070711028888}
   - component: {fileID: 5104831070711028871}
   - component: {fileID: 3548586204361597692}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KingTower_2
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20ebbd52e1570924f9873cb723154b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Max>k__BackingField: 10
+  <Max>k__BackingField: 30
   _healthUI: {fileID: 7046498263823956849}
 --- !u!208 &3548586204361597692
 NavMeshObstacle:
@@ -206,6 +206,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1561340675325879793, guid: d33788a785ab80c45931e82b25cea4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 623044252186788585, guid: d33788a785ab80c45931e82b25cea4dd,
         type: 3}
       propertyPath: m_Materials.Array.data[2]
@@ -225,6 +230,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tower_Main
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d33788a785ab80c45931e82b25cea4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748967465290513111, guid: d33788a785ab80c45931e82b25cea4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150816763254107077, guid: d33788a785ab80c45931e82b25cea4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189294066970922362, guid: d33788a785ab80c45931e82b25cea4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8181280088310036607, guid: d33788a785ab80c45931e82b25cea4dd,
         type: 3}
@@ -265,6 +290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765891622109967451, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2765891622109967451, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
@@ -378,8 +408,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5416244213072998310, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416244213072998310, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146232824342057558, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6146232824342057558, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
@@ -490,6 +530,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905828008657668262, guid: 5493bfb5214c9b342b9cbb76d465142e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8905828008657668262, guid: 5493bfb5214c9b342b9cbb76d465142e,
         type: 3}
