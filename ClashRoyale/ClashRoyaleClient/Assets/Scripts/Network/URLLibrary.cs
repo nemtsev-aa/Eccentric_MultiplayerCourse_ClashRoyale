@@ -6,6 +6,7 @@ public class URLLibrary : MonoBehaviour {
     private const string REGISTRATION = "Authorization/registration.php";
     private const string DECKINFO = "Game/getDeckInfo.php";
     private const string SETSELECTDECK = "Game/setSelectDeck.php";
+    private const string GETRATING = "Game/getRating.php";
 
     private const string FROMMAIL = "";
     private const string FROMPASS = "";
@@ -16,4 +17,5 @@ public class URLLibrary : MonoBehaviour {
     public static string FromPass { get { return FROMPASS; } }
     public static string GetDeckInfo { get { return MAIN + DECKINFO; } }
     public static string SetSelectDeck { get { return MAIN + SETSELECTDECK; } }
+    public static string GetRating { get { return MAIN + GETRATING; } }
 }

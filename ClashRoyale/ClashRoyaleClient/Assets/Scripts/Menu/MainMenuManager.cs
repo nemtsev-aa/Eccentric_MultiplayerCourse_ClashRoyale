@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour {
+    [SerializeField] private RatingManager _ratingManager;
     [SerializeField] private DeckLoader _deckLoader;
     [SerializeField] private DeckManager _deckManager;
     [SerializeField] private CardSelector _cardSelector;
@@ -10,8 +11,10 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private LoadScreenDialog _loadScreenDialog;
 
     private void Start() {
-        InitDialogs();
+        _ratingManager.Init();
         
+        InitDialogs();
+
         _deckLoader.StartLoad();
         _cardSelector.Init(_deckManager);
         CreateSubscriptions();
@@ -27,6 +30,8 @@ public class MainMenuManager : MonoBehaviour {
     private void CreateSubscriptions() {
         _mainMenuDialog.OnStartGame += StartGame;
         _mainMenuDialog.OnHideDialog += ShowSelectCardsDialog;
+        _ratingManager.OnRatingChanged += _mainMenuDialog.PrepDialog;
+
         _selectCardsDialog.OnHideDialog += ShowMainMenuDialog;
         _selectCardsDialog.OnSaveCardsList += _cardSelector.SaveChanges;
 
@@ -69,6 +74,7 @@ public class MainMenuManager : MonoBehaviour {
     private void OnDestroy() {
         _mainMenuDialog.OnStartGame -= StartGame;
         _mainMenuDialog.OnHideDialog -= ShowSelectCardsDialog;
+        _ratingManager.OnRatingChanged -= _mainMenuDialog.PrepDialog;
         _selectCardsDialog.OnHideDialog -= ShowMainMenuDialog;
         _selectCardsDialog.OnSaveCardsList -= _cardSelector.SaveChanges;
 

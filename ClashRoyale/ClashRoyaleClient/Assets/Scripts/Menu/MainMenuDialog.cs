@@ -9,6 +9,7 @@ public class MainMenuDialog : MonoBehaviour {
 
     [SerializeField] private SelectionCardsPanel _selectionCardsPanel;
     [SerializeField] private TextMeshProUGUI _loginText;
+    [SerializeField] private TextMeshProUGUI _ratingText;
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _selectButton;
 
@@ -18,20 +19,22 @@ public class MainMenuDialog : MonoBehaviour {
     public event Action OnStartGame;
 
     public void Init(CardSelector cardSelector) {
-        PrepDialog();
-
         _selectionCardsPanel.Init(cardSelector);
 
         _selectButton.onClick.AddListener(SelectButtonClick);
         _startButton.onClick.AddListener(StartButtonClick);
     }
 
-    private void StartButtonClick() {
-        OnStartGame?.Invoke();
+    public void PrepDialog(int winCount, int loseCount) {
+        UserInfo info = UserInfo.Instance;
+        info.SetRating(winCount, loseCount);
+
+        _loginText.text = info.Login;
+        _ratingText.text = $"[<color=blue>{info.Rating.Wins}</color> : <color=red>{info.Rating.Loss}</color=red>]";
     }
 
-    private void PrepDialog() {
-        _loginText.text = UserInfo.Instance.Login;
+    private void StartButtonClick() {
+        OnStartGame?.Invoke();
     }
 
     private void SelectButtonClick() {
