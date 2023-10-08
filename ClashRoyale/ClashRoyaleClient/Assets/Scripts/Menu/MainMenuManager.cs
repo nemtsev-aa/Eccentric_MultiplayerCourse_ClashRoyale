@@ -7,11 +7,13 @@ public class MainMenuManager : MonoBehaviour {
     [Header("Dialogs")]
     [SerializeField] private MainMenuDialog _mainMenuDialog;
     [SerializeField] private SelectCardsDialog _selectCardsDialog;
+    [SerializeField] private LoadScreenDialog _loadScreenDialog;
 
     private void Start() {
         InitDialogs();
         
         _deckLoader.StartLoad();
+        _cardSelector.Init(_deckManager);
         CreateSubscriptions();
         
         ShowMainMenuDialog();
@@ -26,7 +28,12 @@ public class MainMenuManager : MonoBehaviour {
         _mainMenuDialog.OnStartGame += StartGame;
         _mainMenuDialog.OnHideDialog += ShowSelectCardsDialog;
         _selectCardsDialog.OnHideDialog += ShowMainMenuDialog;
+        _selectCardsDialog.OnSaveCardsList += _cardSelector.SaveChanges;
 
+        _deckLoader.OnStartLoad += ShowLoadScreenDialog;
+        _deckLoader.OnSuccessLoad += _deckManager.Init;
+
+        _deckManager.ChangDeckStarted += ShowLoadScreenDialog;
         _deckManager.UpdateSelectedCards += _cardSelector.SetSelectedCardsList;
         _deckManager.UpdateAvailableCards += _cardSelector.SetAvailableCardsList;
 
@@ -55,20 +62,30 @@ public class MainMenuManager : MonoBehaviour {
         _mainMenuDialog.gameObject.SetActive(true);
     }
 
+    private void ShowLoadScreenDialog(bool status) {
+        _loadScreenDialog.gameObject.SetActive(status);
+    }
+
     private void OnDestroy() {
         _mainMenuDialog.OnStartGame -= StartGame;
         _mainMenuDialog.OnHideDialog -= ShowSelectCardsDialog;
         _selectCardsDialog.OnHideDialog -= ShowMainMenuDialog;
+        _selectCardsDialog.OnSaveCardsList -= _cardSelector.SaveChanges;
 
-        _deckManager.UpdateSelectedCards -= _mainMenuDialog.SelectionCardsPanel.SetCardsList;
-        _deckManager.UpdateSelectedCards -= _selectCardsDialog.SelectionCardsPanel.SetCardsList;
-        _deckManager.UpdateCards -= _selectCardsDialog.AvailableDeckPanel.SetCardsList;
+        _deckLoader.OnStartLoad -= ShowLoadScreenDialog;
+        _deckLoader.OnSuccessLoad -= _deckManager.Init;
 
+        _deckManager.ChangDeckStarted -= ShowLoadScreenDialog;
         _deckManager.UpdateSelectedCards -= _cardSelector.SetSelectedCardsList;
         _deckManager.UpdateAvailableCards -= _cardSelector.SetAvailableCardsList;
 
+        _cardSelector.OnSetSelectedCards -= _mainMenuDialog.SelectionCardsPanel.SetCardsList;
         _cardSelector.OnCardsListChanged -= _mainMenuDialog.SelectionCardsPanel.UpdateSelectionCardsPanel;
+
+        _cardSelector.OnSetSelectedCards -= _selectCardsDialog.SelectionCardsPanel.SetCardsList;
         _cardSelector.OnCardsListChanged -= _selectCardsDialog.SelectionCardsPanel.UpdateSelectionCardsPanel;
+
+        _cardSelector.OnSetAvailableCards -= _selectCardsDialog.AvailableDeckPanel.SetCardsList;
         _cardSelector.OnCardsListChanged -= _selectCardsDialog.AvailableDeckPanel.UpdateAvailableDeckPanel;
     }
 }

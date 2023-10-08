@@ -1,14 +1,18 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeckLoader : MonoBehaviour {
-    [SerializeField] private DeckManager _deckManager;
     [SerializeField] private List<int> _availableCards = new List<int>();
     [SerializeField] private int[] _selectedCards = new int[0];
 
+    public event Action<bool> OnStartLoad;
+    public Action<List<int>, int[]> OnSuccessLoad;
+   
     public void StartLoad() {
+        OnStartLoad?.Invoke(true);
         Network.Instance.Post(URLLibrary.GetDeckInfo,
-            new Dictionary<string, string> { { "userID", UserInfo.Instance.ID.ToString() } },
+            new Dictionary<string, string> { { "userID", $"{UserInfo.Instance.ID}" } },
             SuccessLoad,
             ErrorLoad
             );
@@ -26,7 +30,8 @@ public class DeckLoader : MonoBehaviour {
             _availableCards.Add(id);
         }
 
-        _deckManager.Init(_availableCards, _selectedCards);
+        OnSuccessLoad?.Invoke(_availableCards, _selectedCards);
+        OnStartLoad?.Invoke(false);
     }
 
     private void ErrorLoad(string error) {

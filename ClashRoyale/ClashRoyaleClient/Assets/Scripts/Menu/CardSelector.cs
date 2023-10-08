@@ -13,7 +13,12 @@ public class CardSelector : MonoBehaviour {
     public Action<IReadOnlyList<Card>> OnSetSelectedCards;
     public Action<IReadOnlyList<Card>> OnSetAvailableCards;
     public Action<IReadOnlyList<Card>, IReadOnlyList<Card>> OnCardsListChanged;
-    
+    private DeckManager _deckManager;
+
+   public void Init(DeckManager deckManager) {
+        _deckManager = deckManager;
+    }
+
     public void SetSelectedCardsList(IReadOnlyList<Card> selectedCards) {
         _selectedCards.Clear();
 
@@ -52,5 +57,13 @@ public class CardSelector : MonoBehaviour {
 
     public void UpdateCardsList() {
         OnCardsListChanged?.Invoke(_availableCards, _selectedCards);
+    }
+
+    public void SaveChanges() {
+        _deckManager.ChangedDeck(_selectedCards);
+    }
+
+    public void CancelChanged() {
+        _deckManager.ResetCardLists();
     }
 }

@@ -16,7 +16,6 @@ public class CardToggle : MonoBehaviour {
     
     public void Init(int index) {
         _index = index;
-
         _toggle ??= GetComponent<Toggle>();
         _toggle.group = transform.parent.GetComponent<ToggleGroup>();
         

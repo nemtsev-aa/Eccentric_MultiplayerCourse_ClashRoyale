@@ -30,9 +30,11 @@ public class SelectCardsDialog : MonoBehaviour {
 
     private void SaveCardsList() {
         OnSaveCardsList?.Invoke();
+        OnHideDialog?.Invoke();
     }
 
     private void HideDialog() {
+        _cardSelector.CancelChanged();
         OnHideDialog?.Invoke();
     }
 }
